@@ -2,8 +2,13 @@ import Layout from "../components/Layout";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { useAppDispatch } from "../redux/hook";
+import { IUser } from "../models/Interfaces/IUser";
+import { registerActions } from "../redux/feature/register-slice";
 
 export default function Register() {
+  const dispatch = useAppDispatch();
+
   const resigterSchema = Yup.object({
     name: Yup.string()
       .required("Name is required")
@@ -26,7 +31,15 @@ export default function Register() {
       password: "",
     },
     validationSchema: resigterSchema,
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => {
+      dispatch(
+        registerActions.addUser({
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        } as IUser)
+      );
+    },
   });
 
   return (
@@ -45,10 +58,9 @@ export default function Register() {
                     name="name"
                     type="text"
                     value={formikWithMT.values.name}
-                    error={
-                      Boolean(formikWithMT.errors.name)
-                    }
+                    error={Boolean(formikWithMT.errors.name)}
                     onChange={formikWithMT.handleChange}
+                    crossOrigin={undefined}
                   />
                   {Boolean(formikWithMT.errors.name) ? (
                     <Typography variant="small" className="text-red-500">
@@ -66,6 +78,7 @@ export default function Register() {
                     value={formikWithMT.values.email}
                     error={Boolean(formikWithMT.errors.email)}
                     onChange={formikWithMT.handleChange}
+                    crossOrigin={undefined}
                   />
                   {Boolean(formikWithMT.errors.email) ? (
                     <Typography variant="small" className="text-red-500">
@@ -81,10 +94,9 @@ export default function Register() {
                     name="password"
                     type="password"
                     value={formikWithMT.values.password}
-                    error={
-                      Boolean(formikWithMT.errors.password)
-                    }
+                    error={Boolean(formikWithMT.errors.password)}
                     onChange={formikWithMT.handleChange}
+                    crossOrigin={undefined}
                   />
                   {Boolean(formikWithMT.errors.password) ? (
                     <Typography variant="small" className="text-red-500">

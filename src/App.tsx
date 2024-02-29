@@ -1,7 +1,10 @@
 import { Typography } from "@material-tailwind/react";
 import Layout from "./components/Layout";
+import { useAppSelector } from "./redux/hook";
 
 function App() {
+  const registerState = useAppSelector((state) => state.registerReducer.users);
+
   return (
     <>
       <Layout>
@@ -40,16 +43,13 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="px-4 py-2 text-sm">Vyan Insya Nur Muhammad</td>
-                  <td className="px-4 py-2 text-sm">vyaninsya.nurmuhamamd@gmail.com</td>
-                  <td className="px-4 py-2 text-sm">j313u0n1d8198d</td>
-                </tr>
-                <tr  className="bg-blue-gray-50">
-                  <td className="px-4 py-2 text-sm">Vyan Insya</td>
-                  <td className="px-4 py-2 text-sm">vyaninsya@gmail.com</td>
-                  <td className="px-4 py-2 text-sm">j313u0n1d8198d</td>
-                </tr>
+                {registerState.map(({ name, email, password }) => (
+                  <tr>
+                    <td className="px-4 py-2 text-sm">{name} </td>
+                    <td className="px-4 py-2 text-sm">{email} </td>
+                    <td className="px-4 py-2 text-sm">{password}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
