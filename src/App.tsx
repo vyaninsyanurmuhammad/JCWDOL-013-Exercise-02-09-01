@@ -10,7 +10,7 @@ function App() {
       <Layout>
         <div className="flex w-full justify-center">
           <div className="flex flex-col pt-6">
-            <table>
+            <table className="border border-blue-gray-100">
               <thead>
                 <tr>
                   <th className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
@@ -43,8 +43,8 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {registerState.map(({ name, email, password }) => (
-                  <tr>
+                {registerState.map(({ name, email, password }, index) => (
+                  <tr className={index % 2 === 0 ? "" : "bg-blue-gray-50"}>
                     <td className="px-4 py-2 text-sm">{name} </td>
                     <td className="px-4 py-2 text-sm">{email} </td>
                     <td className="px-4 py-2 text-sm">{password}</td>
