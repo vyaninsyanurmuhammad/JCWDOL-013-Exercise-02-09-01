@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "name": "Ahmad Dazzle",
+      "email": "Ahmad.Dazzle@gmail.com",
+      "password": "A1#doajdauhaihci83",
+      "id": "ebd5"
+    },
+    {
+      "name": "Ahmad Basuki Warden",
+      "email": "basuki.warden@gmail.com",
+      "password": "A1#doajdauhaihci83",
+      "id": "12e8"
+    },
+    {
+      "id": "b40a",
+      "name": "Vyan Insya Nur Muhammad",
+      "email": "vyaninsya.nurmuhammad@gmail.com",
+      "password": "A!1dsfss"
+    }
+  ]
+}
