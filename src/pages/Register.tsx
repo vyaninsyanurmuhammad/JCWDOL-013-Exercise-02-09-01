@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useAppDispatch } from "../redux/hook";
 import { IUser } from "../models/Interfaces/IUser";
-import { registerActions } from "../redux/feature/register-slice";
+import { addUserThunk } from "../redux/feature/register-thunk";
 
 export default function Register() {
   const dispatch = useAppDispatch();
@@ -33,7 +33,7 @@ export default function Register() {
     validationSchema: resigterSchema,
     onSubmit: (values) => {
       dispatch(
-        registerActions.addUser({
+        addUserThunk({
           name: values.name,
           email: values.email,
           password: values.password,

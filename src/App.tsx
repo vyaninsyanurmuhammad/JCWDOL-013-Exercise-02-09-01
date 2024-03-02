@@ -1,9 +1,16 @@
 import { Typography } from "@material-tailwind/react";
 import Layout from "./components/Layout";
-import { useAppSelector } from "./redux/hook";
+import { useAppDispatch, useAppSelector } from "./redux/hook";
+import { useEffect } from "react";
+import { getUserThunk } from "./redux/feature/register-thunk";
 
 function App() {
   const registerState = useAppSelector((state) => state.registerReducer.users);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getUserThunk())
+  }, []);
 
   return (
     <>
@@ -44,7 +51,7 @@ function App() {
               </thead>
               <tbody>
                 {registerState.map(({ name, email, password }, index) => (
-                  <tr className={index % 2 === 0 ? "" : "bg-blue-gray-50"}>
+                  <tr key={index} className={index % 2 === 0 ? "" : "bg-blue-gray-50"}>
                     <td className="px-4 py-2 text-sm">{name} </td>
                     <td className="px-4 py-2 text-sm">{email} </td>
                     <td className="px-4 py-2 text-sm">{password}</td>
